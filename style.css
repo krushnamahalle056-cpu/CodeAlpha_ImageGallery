@@ -19,3 +19,42 @@ header {
     background: #111827;
     color: white;
 }
+
+header h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 18px;
+    color: #d1d5db;
+}
+
+
+/* Filter Buttons */
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 25px;
+}
+
+.filter-btn {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background: white;
+    color: #333;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: #111827;
+    color: white;
+}
