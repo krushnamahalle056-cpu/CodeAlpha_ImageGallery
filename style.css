@@ -244,3 +244,18 @@ header p {
 }
 
 
+/* Footer */
+
+footer {
+    text-align: center;
+
+    margin-top: 40px;
+
+    padding: 20px;
+
+    background: #222;
+
+    color: white;
+}
+
+
