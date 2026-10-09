@@ -205,3 +205,42 @@ header p {
 }
 
 
+/* Previous / Next */
+
+.prev,
+.next {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    background: none;
+
+    border: none;
+
+    color: white;
+
+    font-size: 50px;
+
+    cursor: pointer;
+}
+
+
+.prev {
+    left: 30px;
+}
+
+
+.next {
+    right: 30px;
+}
+
+
+.prev:hover,
+.next:hover,
+.close:hover {
+    color: #ccc;
+}
+
+
