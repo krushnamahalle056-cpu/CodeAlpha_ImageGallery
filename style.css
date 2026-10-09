@@ -185,3 +185,23 @@ header p {
 }
 
 
+/* Close Button */
+
+.close {
+    position: absolute;
+
+    top: 20px;
+    right: 35px;
+
+    font-size: 45px;
+
+    color: white;
+
+    background: none;
+
+    border: none;
+
+    cursor: pointer;
+}
+
+
