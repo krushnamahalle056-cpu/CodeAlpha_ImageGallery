@@ -259,3 +259,14 @@ footer {
 }
 
 
+/* Tablet */
+
+@media (max-width: 900px) {
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
