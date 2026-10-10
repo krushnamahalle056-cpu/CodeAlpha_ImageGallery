@@ -30,3 +30,53 @@ let currentIndex = 0;
 visibleItems = Array.from(galleryItems);
 
 
+// FILTER FUNCTION
+
+filterButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        // Remove active class
+        filterButtons.forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        // Add active class to clicked button
+        button.classList.add("active");
+
+
+        // Get selected category
+        const filter = button.dataset.filter;
+
+
+        // Filter images
+        galleryItems.forEach(item => {
+
+            const category = item.dataset.category;
+
+
+            if (filter === "all" || category === filter) {
+
+                item.style.display = "block";
+
+            } else {
+
+                item.style.display = "none";
+
+            }
+
+        });
+
+
+        // Update visible items
+        visibleItems = Array.from(galleryItems).filter(item => {
+
+            return item.style.display !== "none";
+
+        });
+
+    });
+
+});
+
+
