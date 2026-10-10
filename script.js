@@ -80,3 +80,22 @@ filterButtons.forEach(button => {
 });
 
 
+// OPEN LIGHTBOX
+
+galleryItems.forEach(item => {
+
+    item.addEventListener("click", () => {
+
+        // Find clicked item's position
+        currentIndex = visibleItems.indexOf(item);
+
+        showImage();
+
+    });
+
+});
+
+
+
+
+
