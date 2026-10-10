@@ -96,6 +96,45 @@ galleryItems.forEach(item => {
 });
 
 
+// SHOW IMAGE
+
+
+function showImage() {
+
+    if (visibleItems.length === 0) {
+        return;
+    }
+
+
+    const item = visibleItems[currentIndex];
+
+
+    // Get image
+    const image = item.querySelector("img");
+
+
+    // Get caption
+    const caption = item.querySelector("h3");
+
+
+    // Set image
+    lightboxImage.src = image.src;
+
+    lightboxImage.alt = image.alt;
+
+
+    // Set caption
+    lightboxCaption.textContent = caption.textContent;
+
+
+    // Show lightbox
+    lightbox.style.display = "flex";
+
+}
+
+
+
+
 
 
 
