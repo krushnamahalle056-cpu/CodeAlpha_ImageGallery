@@ -17,3 +17,16 @@ const prevBtn = document.getElementById("prevBtn");
 
 const nextBtn = document.getElementById("nextBtn");
 
+
+// Store currently visible images
+let visibleItems = [];
+
+
+// Current image index
+let currentIndex = 0;
+
+
+// Initially show all images
+visibleItems = Array.from(galleryItems);
+
+
