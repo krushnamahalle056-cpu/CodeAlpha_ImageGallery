@@ -174,3 +174,19 @@ closeBtn.addEventListener("click", () => {
     lightbox.style.display = "none";
 
 });
+
+
+
+// CLOSE WHEN CLICKING OUTSIDE
+
+lightbox.addEventListener("click", (event) => {
+
+    if (event.target === lightbox) {
+
+        lightbox.style.display = "none";
+
+    }
+
+});
+
+
