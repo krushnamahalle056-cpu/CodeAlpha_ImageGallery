@@ -98,7 +98,6 @@ galleryItems.forEach(item => {
 
 // SHOW IMAGE
 
-
 function showImage() {
 
     if (visibleItems.length === 0) {
@@ -132,9 +131,21 @@ function showImage() {
 
 }
 
+// ------------------------------------
+// NEXT IMAGE
+// ------------------------------------
 
+nextBtn.addEventListener("click", () => {
 
+    currentIndex++;
 
+    if (currentIndex >= visibleItems.length) {
 
+        currentIndex = 0;
 
+    }
+
+    showImage();
+
+});
 
