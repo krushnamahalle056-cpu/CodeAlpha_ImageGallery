@@ -166,3 +166,11 @@ prevBtn.addEventListener("click", () => {
 
 });
 
+
+// CLOSE LIGHTBOX
+
+closeBtn.addEventListener("click", () => {
+
+    lightbox.style.display = "none";
+
+});
