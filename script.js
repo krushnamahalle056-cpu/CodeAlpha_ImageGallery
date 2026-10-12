@@ -134,7 +134,6 @@ function showImage() {
 
 // NEXT IMAGE
 
-
 nextBtn.addEventListener("click", () => {
 
     currentIndex++;
