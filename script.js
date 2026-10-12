@@ -190,3 +190,40 @@ lightbox.addEventListener("click", (event) => {
 });
 
 
+// KEYBOARD CONTROLS
+
+document.addEventListener("keydown", (event) => {
+
+    // Escape
+    if (event.key === "Escape") {
+
+        lightbox.style.display = "none";
+
+    }
+
+
+    // Right arrow
+    if (event.key === "ArrowRight") {
+
+        if (lightbox.style.display === "flex") {
+
+            nextBtn.click();
+
+        }
+
+    }
+
+
+    // Left arrow
+    if (event.key === "ArrowLeft") {
+
+        if (lightbox.style.display === "flex") {
+
+            prevBtn.click();
+
+        }
+
+    }
+
+});
+
