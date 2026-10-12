@@ -131,9 +131,9 @@ function showImage() {
 
 }
 
-// ------------------------------------
+
 // NEXT IMAGE
-// ------------------------------------
+
 
 nextBtn.addEventListener("click", () => {
 
@@ -142,6 +142,23 @@ nextBtn.addEventListener("click", () => {
     if (currentIndex >= visibleItems.length) {
 
         currentIndex = 0;
+
+    }
+
+    showImage();
+
+});
+
+
+// PREVIOUS IMAGE
+
+prevBtn.addEventListener("click", () => {
+
+    currentIndex--;
+
+    if (currentIndex < 0) {
+
+        currentIndex = visibleItems.length - 1;
 
     }
 
