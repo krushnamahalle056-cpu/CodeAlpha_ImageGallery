@@ -1,228 +1,155 @@
-// Get all gallery items
-const galleryItems = document.querySelectorAll(".gallery-item");
 
-// Get filter buttons
+const galleryItems = Array.from(
+    document.querySelectorAll(".gallery-item")
+);
+
 const filterButtons = document.querySelectorAll(".filter-btn");
 
-// Lightbox elements
 const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+const lightboxCaption = document.getElementById("lightbox-caption");
 
-const lightboxImage = document.getElementById("lightboxImage");
+const closeBtn = document.getElementById("close");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
 
-const lightboxCaption = document.getElementById("lightboxCaption");
-
-const closeBtn = document.getElementById("closeBtn");
-
-const prevBtn = document.getElementById("prevBtn");
-
-const nextBtn = document.getElementById("nextBtn");
-
-
-// Store currently visible images
-let visibleItems = [];
-
-
-// Current image index
+let visibleItems = [...galleryItems];
 let currentIndex = 0;
+let lastFocusedElement = null;
 
 
-// Initially show all images
-visibleItems = Array.from(galleryItems);
-
-
-// FILTER FUNCTION
-
+// FILTER IMAGES
 filterButtons.forEach(button => {
-
     button.addEventListener("click", () => {
+        const selectedCategory = button.dataset.filter;
 
-        // Remove active class
         filterButtons.forEach(btn => {
-            btn.classList.remove("active");
+            const isActive = btn === button;
+
+            btn.classList.toggle("active", isActive);
+            btn.setAttribute("aria-pressed", String(isActive));
         });
 
-        // Add active class to clicked button
-        button.classList.add("active");
-
-
-        // Get selected category
-        const filter = button.dataset.filter;
-
-
-        // Filter images
         galleryItems.forEach(item => {
+            const matches =
+                selectedCategory === "all" ||
+                item.dataset.category === selectedCategory;
 
-            const category = item.dataset.category;
-
-
-            if (filter === "all" || category === filter) {
-
-                item.style.display = "block";
-
-            } else {
-
-                item.style.display = "none";
-
-            }
-
+            item.style.display = matches ? "" : "none";
         });
 
-
-        // Update visible items
-        visibleItems = Array.from(galleryItems).filter(item => {
-
-            return item.style.display !== "none";
-
-        });
-
+        visibleItems = galleryItems.filter(
+            item => item.style.display !== "none"
+        );
     });
-
 });
 
 
 // OPEN LIGHTBOX
+function openLightbox(item) {
+    currentIndex = visibleItems.indexOf(item);
 
+    if (currentIndex === -1) {
+        return;
+    }
+
+    lastFocusedElement = document.activeElement;
+    showImage();
+
+    lightbox.style.display = "flex";
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    closeBtn.focus();
+}
+
+
+// OPEN IMAGE ON CLICK, ENTER OR SPACE
 galleryItems.forEach(item => {
-
     item.addEventListener("click", () => {
-
-        // Find clicked item's position
-        currentIndex = visibleItems.indexOf(item);
-
-        showImage();
-
+        openLightbox(item);
     });
 
+    item.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openLightbox(item);
+        }
+    });
 });
 
 
-// SHOW IMAGE
-
+// DISPLAY CURRENT IMAGE
 function showImage() {
-
     if (visibleItems.length === 0) {
         return;
     }
 
-
     const item = visibleItems[currentIndex];
-
-
-    // Get image
     const image = item.querySelector("img");
+    const caption = item.querySelector(".caption h2");
 
-
-    // Get caption
-    const caption = item.querySelector("h3");
-
-
-    // Set image
-    lightboxImage.src = image.src;
-
-    lightboxImage.alt = image.alt;
-
-
-    // Set caption
+    lightboxImg.src = image.src;
+    lightboxImg.alt = image.alt;
     lightboxCaption.textContent = caption.textContent;
-
-
-    // Show lightbox
-    lightbox.style.display = "flex";
-
 }
 
 
 // NEXT IMAGE
-
 nextBtn.addEventListener("click", () => {
+    if (visibleItems.length === 0) return;
 
-    currentIndex++;
-
-    if (currentIndex >= visibleItems.length) {
-
-        currentIndex = 0;
-
-    }
-
+    currentIndex = (currentIndex + 1) % visibleItems.length;
     showImage();
-
 });
 
 
 // PREVIOUS IMAGE
-
 prevBtn.addEventListener("click", () => {
+    if (visibleItems.length === 0) return;
 
-    currentIndex--;
-
-    if (currentIndex < 0) {
-
-        currentIndex = visibleItems.length - 1;
-
-    }
+    currentIndex =
+        (currentIndex - 1 + visibleItems.length) % visibleItems.length;
 
     showImage();
-
 });
 
 
 // CLOSE LIGHTBOX
-
-closeBtn.addEventListener("click", () => {
-
+function closeLightbox() {
     lightbox.style.display = "none";
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
 
-});
-
-
-
-// CLOSE WHEN CLICKING OUTSIDE
-
-lightbox.addEventListener("click", (event) => {
-
-    if (event.target === lightbox) {
-
-        lightbox.style.display = "none";
-
+    if (lastFocusedElement) {
+        lastFocusedElement.focus();
     }
+}
 
+closeBtn.addEventListener("click", closeLightbox);
+
+
+// CLOSE WHEN CLICKING OUTSIDE THE IMAGE
+lightbox.addEventListener("click", event => {
+    if (event.target === lightbox) {
+        closeLightbox();
+    }
 });
 
 
 // KEYBOARD CONTROLS
+document.addEventListener("keydown", event => {
+    if (lightbox.style.display !== "flex") {
+        return;
+    }
 
-document.addEventListener("keydown", (event) => {
-
-    // Escape
     if (event.key === "Escape") {
-
-        lightbox.style.display = "none";
-
+        closeLightbox();
+    } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        nextBtn.click();
+    } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        prevBtn.click();
     }
-
-
-    // Right arrow
-    if (event.key === "ArrowRight") {
-
-        if (lightbox.style.display === "flex") {
-
-            nextBtn.click();
-
-        }
-
-    }
-
-
-    // Left arrow
-    if (event.key === "ArrowLeft") {
-
-        if (lightbox.style.display === "flex") {
-
-            prevBtn.click();
-
-        }
-
-    }
-
 });
-
