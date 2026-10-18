@@ -1,21 +1,20 @@
-# CodeAlpha_ImageGallery
 # Image Gallery
 
-This is a simple and responsive Image Gallery project developed using HTML, CSS, and JavaScript as part of the CodeAlpha Frontend Development Internship.
+This is a responsive Image Gallery project developed using HTML, CSS, and JavaScript as part of the CodeAlpha Frontend Development Internship.
 
-The gallery displays images in different categories and allows users to view images in a larger format.
+The project displays a collection of images in different categories and allows users to view them in a larger preview.
 
 ## Features
 
-- Responsive layout for desktop, tablet, and mobile devices
+- Responsive design for desktop, tablet, and mobile
 - Image categories: Nature, City, and Animals
 - Filter images by category
-- Lightbox to view images in a larger size
-- Next and Previous buttons to navigate between images
-- Close button to exit the lightbox
+- Lightbox for viewing images in a larger format
+- Next and Previous image navigation
+- Close button and Escape key support
+- Keyboard navigation using arrow keys
 - Hover effects and smooth transitions
-- Keyboard navigation using arrow keys and the Escape key
-- Local images stored in the project folder
+- Local images stored in the `img` folder
 
 ## Technologies Used
 
@@ -33,37 +32,34 @@ CodeAlpha_ImageGallery/
 ├── script.js
 ├── README.md
 │
-└── images/
+└── img/
     ├── nature1.jpg
-    ├── mountain.jpg
-    ├── forest.jpg
     ├── city1.jpg
-    ├── city2.jpg
-    ├── city3.jpg
     ├── animal1.jpg
+    ├── mountain.jpg
+    ├── city2.jpg
     ├── dog.jpg
+    ├── forest.jpg
+    ├── city3.jpg
     └── wildlife.jpg
 ```
 
-## How to Run the Project
+## How to Run
 
-1. Download or clone the repository.
+1. Download or clone the project repository.
 2. Open the project folder in VS Code.
-3. Make sure all images are available inside the `images` folder.
+3. Make sure all images are inside the `img` folder.
 4. Open `index.html` using Live Server.
-5. Click on any image to open it in the lightbox.
-6. Use the category buttons to filter images.
+5. Select a category to filter the images.
+6. Click any image to open the lightbox.
+7. Use the arrow buttons to browse images.
 
 ## What I Learned
 
-While building this project, I learned how to create a responsive gallery layout, use CSS hover effects, handle click events with JavaScript, filter images using categories, and implement a lightbox with image navigation.
+While developing this project, I practiced HTML page structure, CSS Grid, responsive design, JavaScript event handling, DOM manipulation, category filtering, and lightbox functionality.
 
-## Internship
+## Internship Details
 
-**Domain:** Frontend Development  
 **Organization:** CodeAlpha  
+**Domain:** Frontend Development  
 **Project:** Image Gallery
-
----
-
-Thanks for checking out my project!
