@@ -279,3 +279,11 @@ footer {
         animation-duration: 0.01ms !important;
     }
 }
+
+
+/* Search Bar */
+.search-container {
+    width: 90%;
+    max-width: 500px;
+    margin: 20px auto 0;
+}
