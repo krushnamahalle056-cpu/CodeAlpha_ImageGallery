@@ -299,3 +299,8 @@ footer {
     color: #222;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
+
+#searchInput:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
