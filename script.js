@@ -153,3 +153,31 @@ document.addEventListener("keydown", event => {
         prevBtn.click();
     }
 });
+
+
+const searchInput = document.getElementById("searchInput");
+
+function filterGallery() {
+    const activeButton = document.querySelector(".filter-btn.active");
+    const selectedCategory = activeButton.dataset.filter;
+    const searchText = searchInput.value.toLowerCase().trim();
+
+    galleryItems.forEach(item => {
+        const category = item.dataset.category;
+        const title = item.querySelector(".caption h2").textContent.toLowerCase();
+
+        const matchesCategory =
+            selectedCategory === "all" || category === selectedCategory;
+
+        const matchesSearch = title.includes(searchText);
+
+        item.style.display =
+            matchesCategory && matchesSearch ? "" : "none";
+    });
+
+    visibleItems = galleryItems.filter(
+        item => item.style.display !== "none"
+    );
+}
+
+searchInput.addEventListener("input", filterGallery);
