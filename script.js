@@ -21,8 +21,6 @@ let lastFocusedElement = null;
 // FILTER IMAGES
 filterButtons.forEach(button => {
     button.addEventListener("click", () => {
-        const selectedCategory = button.dataset.filter;
-
         filterButtons.forEach(btn => {
             const isActive = btn === button;
 
@@ -30,20 +28,9 @@ filterButtons.forEach(button => {
             btn.setAttribute("aria-pressed", String(isActive));
         });
 
-        galleryItems.forEach(item => {
-            const matches =
-                selectedCategory === "all" ||
-                item.dataset.category === selectedCategory;
-
-            item.style.display = matches ? "" : "none";
-        });
-
-        visibleItems = galleryItems.filter(
-            item => item.style.display !== "none"
-        );
+        filterGallery();
     });
 });
-
 
 // OPEN LIGHTBOX
 function openLightbox(item) {
