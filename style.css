@@ -287,3 +287,15 @@ footer {
     max-width: 500px;
     margin: 20px auto 0;
 }
+
+#searchInput {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    background: white;
+    color: #222;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
